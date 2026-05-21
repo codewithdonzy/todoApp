@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Edit Profile – TaskFlow{% endblock %}
+{% block page_title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="card-header bg-white py-3">
+        <h6 class="fw-bold mb-0"><i class="bi bi-pencil-square me-2 text-primary"></i>Update Your Profile</h6>
+      </div>
+      <div class="card-body p-4">
+        <form method="post">
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">First Name</label>
+              <input type="text" name="first_name" class="form-control"
+                     value="{{ user.first_name }}">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Last Name</label>
+              <input type="text" name="last_name" class="form-control"
+                     value="{{ user.last_name }}">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Email</label>
+              <input type="email" name="email" class="form-control"
+                     value="{{ user.email }}">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Phone</label>
+              <input type="text" name="phone" class="form-control"
+                     value="{{ profile.phone }}" placeholder="+233 XX XXX XXXX">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Bio</label>
+              <textarea name="bio" class="form-control" rows="3"
+                        placeholder="Tell us a little about yourself…">{{ profile.bio }}</textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Avatar Color</label>
+              <div class="d-flex align-items-center gap-3">
+                <input type="color" name="avatar_color" class="form-control form-control-color"
+                       value="{{ profile.avatar_color }}" style="width:50px;">
+                <span class="text-muted small">Choose a color for your avatar</span>
+              </div>
+            </div>
+            <div class="col-12 d-flex gap-2 mt-2">
+              <button type="submit" class="btn btn-primary fw-semibold"
+                      style="background:var(--primary);border-color:var(--primary);">
+                <i class="bi bi-check-lg me-1"></i>Save Changes
+              </button>
+              <a href="{% url 'profile' %}" class="btn btn-outline-secondary fw-semibold">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
